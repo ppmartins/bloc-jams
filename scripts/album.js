@@ -32,6 +32,23 @@ var albumMarconi = {
     ]
 };
 
+// One Extra Example Album
+
+var albumPedro = {
+    title: 'The Coder',
+    artist: 'Pedro Codex',
+    label: 'ME',
+    year: '2016',
+    albumArtUrl: 'assets/images/album_covers/03.png',
+    songs: [
+        { title: 'Bazuca', duration: '3:04' },
+        { title: "Garfield's on fire", duration: '4:27' },
+        { title: 'Trump is back', duration: '2:21' },
+        { title: 'Merry Present Christmas', duration: '6:21' },
+        { title: 'Aleluia', duration: '5:53' }
+    ]
+};
+
 
 var createSongRow = function(songNumber, songName, songLength) {
     var template = 
@@ -45,14 +62,14 @@ var createSongRow = function(songNumber, songName, songLength) {
     return template;
 };
 
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
 
 var setCurrentAlbum = function(album) {
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
-    
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
@@ -67,4 +84,14 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+    var albums = [albumPicasso, albumMarconi, albumPedro];
+    var i = 1;
+    
+    albumImage.addEventListener("click", function(event) {
+       setCurrentAlbum(albums[i]); 
+       i++;
+       if(i == albums.length) {
+           i = 0;
+       }
+    });
 };
