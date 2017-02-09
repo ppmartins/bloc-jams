@@ -24,6 +24,7 @@ var createSongRow = function(songNumber, songName, songLength) {
 
      if (currentlyPlayingSongNumber !== null) {
          // Revert to song number for currently playing song because user started playing new song.
+        //  debugger;
          var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
          currentlyPlayingCell.html(currentlyPlayingSongNumber);
      }
@@ -38,7 +39,6 @@ var createSongRow = function(songNumber, songName, songLength) {
          // Switch from Pause -> Play button to pause currently playing song.
          $(this).html(playButtonTemplate);
          $('.main-controls .play-pause').html(playerBarPlayButton);
-
         //  currentlyPlayingSongNumber = null;
         //  currentSongFromAlbum = null;
      }
